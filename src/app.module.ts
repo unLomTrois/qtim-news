@@ -4,6 +4,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserModule } from './users/users.module';
 import { User } from './users/entities/user.entity';
 import { AuthModule } from './auth/auth.module';
+import { NewsModule } from './news/news.module';
+import { News } from './news/entities/news.entity';
 
 @Module({
   imports: [
@@ -17,13 +19,14 @@ import { AuthModule } from './auth/auth.module';
         username: config.get('DB_USER'),
         password: config.get('DB_PASSWORD'),
         database: config.get('DB_NAME'),
-        entities: [User],
+        entities: [User, News],
         synchronize: true,
       }),
       inject: [ConfigService],
     }),
     UserModule,
     AuthModule,
+    NewsModule,
   ],
 })
 export class AppModule {}

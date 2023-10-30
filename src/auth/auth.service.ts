@@ -37,7 +37,6 @@ export class AuthService {
 
     const user = await this.userService.create(registerDto);
 
-    user.password = undefined;
     return user;
   }
 

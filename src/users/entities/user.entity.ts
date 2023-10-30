@@ -1,4 +1,6 @@
-import { PrimaryGeneratedColumn, Column, Entity } from 'typeorm';
+import { Exclude } from 'class-transformer';
+import { News } from 'src/news/entities/news.entity';
+import { PrimaryGeneratedColumn, Column, Entity, OneToMany } from 'typeorm';
 
 @Entity()
 export class User {
@@ -8,9 +10,13 @@ export class User {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @Column()
+  @Exclude()
   password: string;
+
+  @OneToMany(() => News, (news) => news.author)
+  news: News[];
 }

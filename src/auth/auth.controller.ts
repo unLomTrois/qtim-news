@@ -53,8 +53,6 @@ export class AuthController {
       refresh_token.cookie,
     ]);
 
-    user.password = undefined;
-
     return user;
   }
 
@@ -71,7 +69,6 @@ export class AuthController {
     });
     response.setHeader('Set-Cookie', new_access_token.cookie);
 
-    user.password = undefined;
     return user;
   }
 }

@@ -23,13 +23,11 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  async validate({ email }: JwtPayload): Promise<{
-    user: User;
-  }> {
+  async validate({ email }: JwtPayload): Promise<User> {
     try {
       const user = await this.userService.findOneBy({ email });
 
-      return { user };
+      return user;
     } catch (error) {
       if (error?.message) {
         throw error;
